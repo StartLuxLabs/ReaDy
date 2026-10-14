@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "draft_weight_sha256": "746f7d94f77d1d032614d2c0af805bf08cbe22b4a019b7ba84e103d36139c3ac",
+  "reader_export": "All five tensors equal to the selected original checkpoint after name-prefix removal",
+  "reader_forward": {
+    "device": "CPU",
+    "dtypes": [
+      "float32",
+      "bfloat16"
+    ],
+    "batch_sizes": [
+      1,
+      2,
+      4
+    ],
+    "draft_tokens": 7,
+    "cases": 6,
+    "bitwise_equal": true
+  },
+  "end_to_end": {
+    "device": "NVIDIA B200",
+    "temperature": 0,
+    "max_new_tokens": 256,
+    "concurrency": 1,
+    "independent_server_launches": 2,
+    "generic_prompts": 3,
+    "completion_tokens": [
+      43,
+      74,
+      55
+    ],
+    "all_natural_eos": true,
+    "output_ids_equal_to_original": true,
+    "text_equal_to_original": true,
+    "speculative_verify_counts_equal_to_original": true
+  },
+  "scope": "Functional inference and backend equivalence checks",
+  "triton_backend": {
+    "passed": true,
+    "kernel_cases": 24,
+    "batch_sizes": [
+      1,
+      2,
+      4
+    ],
+    "state_scales": [
+      0,
+      0.0001,
+      1,
+      100
+    ],
+    "cuda_graph_replays": 12,
+    "changing_request_indices": true,
+    "strided_state_pools": true,
+    "bitwise_equal_to_reference": true,
+    "end_to_end_prompts": 3,
+    "output_ids_equal": true,
+    "text_equal": true,
+    "verify_counts_equal": true
+  }
+}

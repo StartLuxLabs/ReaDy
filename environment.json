@@ -1,0 +1,24 @@
+{
+  "python": "3.12",
+  "tested_packages": {
+    "torch": "2.13.0+cu129",
+    "transformers": "5.6.2",
+    "triton": "3.7.1",
+    "safetensors": "0.7.0",
+    "flashinfer-python": "0.6.17",
+    "sglang-kernel": "0.4.6.post1+cu129",
+    "requests": "2.33.1",
+    "numpy": "1.26.4",
+    "quack-kernels": "0.3.11"
+  },
+  "sglang_commit": "29481685462732237d80d86076d6563e1f658102",
+  "cuda": "12.9",
+  "validated_hardware": "NVIDIA B200",
+  "scope": "Single GPU, concurrency one, greedy decoding",
+  "engine_python_sha256": "2bd3879198c21a3c7448ff4e98ca35666110048c613d6a299ac83321d8edd427",
+  "engine_python_file_count": 3124,
+  "reader_backends": [
+    "reference",
+    "triton"
+  ]
+}

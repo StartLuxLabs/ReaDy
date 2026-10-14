@@ -1,0 +1,28 @@
+ReaDy inference specification
+============================
+
+The package contains the full draft-model weights, including the native draft
+heads, and the recurrent-state reader. The target model is supplied separately.
+
+Target recurrent layers: zero-based indices 30 and 62.
+State shape per request: [2, 48, 128, 128], with value before key.
+Draft injection: layer index 4, after its attention normalization.
+Hidden size: 5,120. Draft block: 7 tokens. Reader bottleneck: 128.
+Rank: 8 on both the value-map output and the query factorization.
+
+The reader first RMS-normalizes state. A learned value projection maps the
+128-dimensional value axis to 8 dimensions. The hidden state produces an
+8-dimensional query per state head; a learned query-up projection maps that
+query back to the 128-dimensional key axis before the state read. The target
+recurrent state remains 128-by-128. Per-head log state magnitude is appended
+to the read features, followed by normalization and a two-layer SiLU residual
+projection to the draft hidden size.
+
+The reference backend uses PyTorch operations. The Triton backend fuses the
+two-layer state gather, the normalization pointwise operations, and feature
+scaling/concatenation. State reduction and matrix products retain their existing
+implementations. Both backends read the current committed state into stable
+CUDA-graph buffers for every proposal.
+
+Weights use safetensors. The reader contains five parameter tensors and loads
+strictly by tensor name and shape. The checkpoint hashes are checked by serve.py.
