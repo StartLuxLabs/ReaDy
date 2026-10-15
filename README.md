@@ -6,7 +6,8 @@
 
 **A lightweight state reader for the next block of draft tokens.**
 
-[🤗 Model weights](https://huggingface.co/startlux-models/ReaDy-Qwen3.8-27B) · [Quickstart](#quickstart) · [Environment](#environment)
+[📄 Technical Report](https://arxiv.org/abs/2610.20503) · [🤗 Model weights](https://huggingface.co/startlux-models/ReaDy-Qwen3.8-27B) · [Quickstart](#quickstart) · [Environment](#environment)
+
 </div>
 
 ReaDy lets a speculative drafter query the target model's **committed recurrent states** for each upcoming draft position. A compact reader turns this context into a residual update to the draft representation, complementing the hidden features already used by DSpark. The target model then verifies the proposed tokens through SGLang.
